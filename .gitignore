@@ -1,2 +1,7 @@
 .idea/
+logs/
+mysql/
+
+www/php2/public/Scrum/Config.php
 test.php
+.env

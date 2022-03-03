@@ -15,6 +15,13 @@
             </button>
         </a>
     </p>
+    <p>
+        <a href="/Index">
+            <button>
+                Return main
+            </button>
+        </a>
+    </p>
     <?php foreach ($this->task as $board): ?>
     <p>
         <?php echo 'id: ' . $board->id ?>
@@ -27,15 +34,15 @@
         <br>
         <?php echo 'description: ' . $board->description ?>
         <br>
+        <form enctype="multipart/form-data" method="post"
+        action="/Task/close">
+            <input size="2" name="id" value="<?php echo $board->id ?>" readonly>
+            <button>
+                close task
+            </button>
+        </form>
     </p>
     <?php endforeach; ?>
-    </p>
-    <p>
-        <a href="/Index">
-            <button>
-                Return main
-            </button>
-        </a>
     </p>
 
 </body>

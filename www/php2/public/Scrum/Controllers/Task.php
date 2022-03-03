@@ -5,7 +5,6 @@ namespace Scrum\Controllers;
 
 
 use Scrum\Controller;
-use Scrum\Db;
 use Scrum\Models\Sprint;
 use Scrum\Models\Task as Tsk;
 
@@ -35,6 +34,12 @@ class Task extends Controller
             $boardSave->description = $_POST['description'];
         }
         $boardSave->save();
+        header('Location: /Task/Index');
+    }
+
+    public function close()
+    {
+        Tsk::delete($_POST['id']);
         header('Location: /Task/Index');
     }
 }

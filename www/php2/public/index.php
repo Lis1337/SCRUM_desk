@@ -15,12 +15,19 @@ $ctrlName = new $class;
 if (!isset($serverExplode[2])) {
     $ctrlName->index();
 
-} else {
+} elseif (!isset($serverExplode[3])) {
     $methodName = $serverExplode[2];
     if (!method_exists($ctrlName, $methodName)) {
         die('error 404');
 
     } else {
-            $ctrlName->$methodName();
+        $ctrlName->$methodName();
+    }
+
+} else {
+    if ($serverExplode[2] == 'sprints') {
+        $ctrlName->sprintsClose();
+    } else {
+        $ctrlName->tasksClose();
     }
 }

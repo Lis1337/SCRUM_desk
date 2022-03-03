@@ -5,7 +5,6 @@ namespace Scrum\Controllers;
 
 use Scrum\Models\Sprint;
 use Scrum\Models\Task;
-use Scrum\Models\Task as Tsk;
 
 class Api extends \Scrum\Controller
 {
@@ -23,7 +22,7 @@ class Api extends \Scrum\Controller
 
     public function tasks()
     {
-        $boardSave = new Tsk();
+        $boardSave = new Task();
         $data = $_POST;
 
         $boardSave->sprintId = $_POST['sprintId'];
@@ -47,5 +46,19 @@ class Api extends \Scrum\Controller
         $idArray['id'] = $object[array_key_first($object)]->id;
         $this->view->objectSerialized = json_encode($idArray);
         $this->view->display(__DIR__ . '/../Templates/API/showId.php');
+    }
+
+    public function sprintsClose()
+    {
+        Sprint::delete($_POST['id']);
+        $this->view->success = json_encode(['success' => 'true']);
+        $this->view->display(__DIR__ . '/../Templates/API/close.php');
+    }
+
+    public function tasksClose()
+    {
+        Task::delete($_POST['id']);
+        $this->view->success = json_encode(['success' => 'true']);
+        $this->view->display(__DIR__ . '/../Templates/API/close.php');
     }
 }

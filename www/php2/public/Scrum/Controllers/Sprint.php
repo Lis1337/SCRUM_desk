@@ -28,4 +28,9 @@ class Sprint extends Controller
         header('Location: /Sprint/Index');
     }
 
+    public function close()
+    {
+        spr::delete($_POST['id']);
+        header('Location: /Sprint/Index');
+    }
 }
